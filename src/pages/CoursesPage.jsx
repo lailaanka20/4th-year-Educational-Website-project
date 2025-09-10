@@ -64,7 +64,7 @@ const CoursesPage = () => {
           <button
             key={index}
             onClick={() => setSelectedYear(year)}
-            className={`bg-blue-300 rounded-3xl text-lg px-6 py-2 transition-colors duration-300
+            className={`bg-blue-300 rounded-3xl text-lg px-10 py-1 transition-colors duration-300
               hover:bg-orange-200 ${
                 year === selectedYear ? "bg-orange-200" : ""
               }
