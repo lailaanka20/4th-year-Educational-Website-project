@@ -33,6 +33,7 @@ const UploadExam = () => {
       });
 
       navigate("/ProfessorDashboard");
+      toast.success(`تم رفع الاختبار${title} بنجاح!`);
     } catch (error) {
       toast.error("حدث خطأ أثناء الرفع. حاول مرة أخرى.");
     } finally {
