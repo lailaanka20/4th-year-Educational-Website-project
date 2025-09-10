@@ -74,7 +74,8 @@ const ProfilePage = () => {
     if (currentUser) {
       const docRef = doc(db, "users", currentUser.uid);
       await setDoc(docRef, data, { merge: true });
-      // setData(data);
+
+      setData(data);
 
       toast.success("تم حفظ التعديلات");
     }
@@ -137,101 +138,99 @@ const ProfilePage = () => {
           <div className="w-100">
             {activeSection === "edit" &&
               (loading ? (
-                <Loading className="text-2xl font-semibold text-amber-600">
-                  <ClipLoader size={50} className="mr-30" />
-                </Loading>
+                <Loading />
               ) : (
                 <>
                   {["name", "num", "email", "year", "major"].map(
                     (field, index) => (
-                      <form>
-                        <div className="flex justify-between items-center ">
-                          <label>
-                            {field === "name"
-                              ? "الاسم"
-                              : field === "num"
-                              ? "رقم الهاتف"
-                              : field === "email"
-                              ? "البريد الإلكتروني"
-                              : field === "year"
-                              ? "السنة الجامعية"
-                              : "الاختصاص"}
-                          </label>
-                          {field === "year" ? (
-                            <select
-                              key={field}
-                              value={data.year}
-                              onChange={(e) =>
-                                setData({ ...data, year: e.target.value })
-                              }
-                              className="input input-x my-1 w-65 mb-5"
-                            >
-                              <option value="one">الأولى</option>
-                              <option value="two">الثانية</option>
-                              <option value="three">الثالثة</option>
-                              <option value="four">الرابعة</option>
-                              <option value="five">الخامسة</option>
-                            </select>
-                          ) : field === "major" ? (
-                            <select
-                              key={field}
-                              value={data.major}
-                              onChange={(e) =>
-                                setData({ ...data, major: e.target.value })
-                              }
-                              className="input input-x my-7 w-65 mb-5"
-                            >
-                              <option value="AI">ذكاء صنعي</option>
-                              <option value="SE">هندسة برمجيات</option>
-                              <option value="NE">هندسة شبكات</option>
-                            </select>
-                          ) : (
-                            <ValidateInput
-                              key={field}
-                              type="text"
-                              value={
-                                field === "name"
-                                  ? data.name
-                                  : field === "num"
-                                  ? data.num
-                                  : field === "email"
-                                  ? data.email
-                                  : ""
-                              }
-                              onChange={(e) => {
-                                setData({ ...data, [field]: e.target.value });
-                              }}
-                              validate={
-                                field === "name"
-                                  ? ""
-                                  : field === "num"
-                                  ? isValidPhone
-                                  : field === "email"
-                                  ? isValidEmail
-                                  : (val) => val.trim().length > 0
-                              }
-                              errmessage="القيمة غير صالحة"
-                              placeholder={
-                                field === "name"
-                                  ? "الاسم"
-                                  : field === "num"
-                                  ? "رقم الهاتف"
-                                  : field === "email"
-                                  ? "البريد الإلكتروني"
-                                  : field === "year"
-                                  ? "السنة الجامعية"
-                                  : "الاختصاص"
-                              }
-                              className="mb-5"
-                            />
-                          )}
-                        </div>
-                      </form>
+                      <div className="flex justify-between items-center ">
+                        <label>
+                          {field === "name"
+                            ? "الاسم"
+                            : field === "num"
+                            ? "رقم الهاتف"
+                            : field === "email"
+                            ? "البريد الإلكتروني"
+                            : field === "year"
+                            ? "السنة الجامعية"
+                            : "الاختصاص"}
+                        </label>
+                        {field === "year" ? (
+                          <select
+                            key={field}
+                            value={data.year}
+                            onChange={(e) =>
+                              setData({ ...data, year: e.target.value })
+                            }
+                            className="input input-x my-1 w-65 mb-5"
+                          >
+                            <option value="one">الأولى</option>
+                            <option value="two">الثانية</option>
+                            <option value="three">الثالثة</option>
+                            <option value="four">الرابعة</option>
+                            <option value="five">الخامسة</option>
+                          </select>
+                        ) : field === "major" ? (
+                          <select
+                            key={field}
+                            value={data.major}
+                            onChange={(e) =>
+                              setData({ ...data, major: e.target.value })
+                            }
+                            className="input input-x my-7 w-65 mb-5"
+                          >
+                            <option value="AI">ذكاء صنعي</option>
+                            <option value="SE">هندسة برمجيات</option>
+                            <option value="NE">هندسة شبكات</option>
+                          </select>
+                        ) : (
+                          <ValidateInput
+                            key={field}
+                            type="text"
+                            value={
+                              field === "name"
+                                ? data.name
+                                : field === "num"
+                                ? data.num
+                                : field === "email"
+                                ? data.email
+                                : ""
+                            }
+                            onChange={(val) => {
+                              setData({ ...data, [field]: val });
+                            }}
+                            validate={
+                              field === "name"
+                                ? ""
+                                : field === "num"
+                                ? isValidPhone
+                                : field === "email"
+                                ? isValidEmail
+                                : (val) => val.trim().length > 0
+                            }
+                            errmessage="القيمة غير صالحة"
+                            placeholder={
+                              field === "name"
+                                ? "الاسم"
+                                : field === "num"
+                                ? "رقم الهاتف"
+                                : field === "email"
+                                ? "البريد الإلكتروني"
+                                : field === "year"
+                                ? "السنة الجامعية"
+                                : "الاختصاص"
+                            }
+                            className="mb-5"
+                          />
+                        )}
+                      </div>
                     )
                   )}
                   <Submitbtn onClick={handleSave}>
                     {saving ? (
-                      <p className="text-gray-400">جاري الحفظ ...</p>
+                      <p className="text-gray-400">
+                        <ClipLoader size={30} color="white" />
+                      </p>
                     ) : (
                       "حفظ"
                     )}

@@ -12,7 +12,6 @@ import {
 import Container from "../components/Containers";
 import Loading from "../components/Loading";
 import { FaRegFilePdf } from "react-icons/fa6";
-import { ClipLoader } from "react-spinners";
 
 const ProfessorDashboard = () => {
   const [exams, setExams] = useState([]);
@@ -49,7 +48,7 @@ const ProfessorDashboard = () => {
     };
     fetchExams();
   }, []);
-  if (loading) return <Loading>جاري تحميل البيانات</Loading>;
+  if (loading) return <Loading></Loading>;
 
   return (
     <Container className="flex-col items-start justify-between p-10 h-[100vh]">
@@ -73,7 +72,7 @@ const ProfessorDashboard = () => {
             </h3>
 
             {loading ? (
-              <ClipLoader />
+              <Loading />
             ) : exams.length === 0 ? (
               "لا يوجد اختبارات مرفوعة حتى الآن"
             ) : (

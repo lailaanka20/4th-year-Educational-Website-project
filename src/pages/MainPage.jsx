@@ -9,6 +9,7 @@ import photo from "../assets/images/mainpage.jpg";
 
 const MainPage = () => {
   const [userData, setUserData] = useState(null);
+
   useEffect(() => {
     const fetchUserData = async () => {
       const uid = auth.currentUser.uid;

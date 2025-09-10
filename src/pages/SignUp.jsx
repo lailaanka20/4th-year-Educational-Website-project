@@ -127,9 +127,6 @@ const SignUp = () => {
                         ? "كلمة المرور"
                         : " تأكيد كلمة المرور"
                     }
-                    // className={
-                    //   field === "passwordconfirm" ? "w-full mr-35" : ""
-                    // }
                   />
                 )
               )}

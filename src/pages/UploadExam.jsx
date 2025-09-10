@@ -32,6 +32,13 @@ const UploadExam = () => {
         createdAt: Timestamp.now(),
       });
 
+      await addDoc(collection(db, "notifications"), {
+        messsage: `تم رفع اختبار جديد بعنوان ${title}`,
+        time: Timestamp.now(),
+        type: "exam",
+        forRole: "student",
+      });
+
       navigate("/ProfessorDashboard");
       toast.success(`تم رفع الاختبار${title} بنجاح!`);
     } catch (error) {

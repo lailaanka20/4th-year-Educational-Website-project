@@ -45,19 +45,19 @@ const CourseVideo = ({ playlistId }) => {
   }, [playlistId]);
 
   return (
-    // {playlistId ? (
     <div className="w-full text-center">
       {playlistId ? (
         <div className="w-full border-1 rounded border-amber-200 p-10 grid grid-cols-4 grid-rows-4 gap-x-5 gap-y-10">
           {loading ? (
-            <Loading className="text-2xl font-semibold text-amber-600">
-              جاري تحميل الفيديوهات...
-            </Loading>
+            <Loading />
           ) : (
             vid.map((video) => (
               <div key={video.videoId}>
                 <div>
-                  <Link to={`/Video/${video.videoId}`}>
+                  <Link
+                    to={`/Video/${video.videoId}`}
+                    state={{ title: video.title }}
+                  >
                     <img
                       src={video.thumbnail}
                       alt={video.title}

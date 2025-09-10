@@ -6,6 +6,8 @@ import Containers from "../components/Containers";
 import InfoSide from "../components/InfoSide";
 import { toast } from "react-toastify";
 import photo from "../assets/images/Authentication.png";
+import Loading from "../components/Loading";
+import { ClipLoader } from "react-spinners";
 
 const VerificationPage = () => {
   const navigate = useNavigate();
@@ -70,7 +72,7 @@ const VerificationPage = () => {
               handleCodeComplite(e, code, "/ResetPasswordPage", navigate)
             }
           >
-            إرسال
+            {Loading ? <ClipLoader size={20} color="white" /> : "إرسال"}
           </Submitbtn>
         </form>
       </InfoSide>{" "}
