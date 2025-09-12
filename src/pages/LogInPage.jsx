@@ -22,7 +22,9 @@ const LogInPage = () => {
   });
 
   const handleLogIn = async (e) => {
+    localStorage.clear();
     e.preventDefault();
+
     setErrMessage(null);
     setLoading(true);
     try {
@@ -45,7 +47,9 @@ const LogInPage = () => {
 
         localStorage.setItem("welcomeMessage", welcomeMessage);
 
-        navigate(userData.role === "teacher" ? "/MainPage" : "/ProfilePage");
+        setTimeout(() => {
+          navigate(userData.role === "teacher" ? "/MainPage" : "/ProfilePage");
+        }, 1000);
       } else {
         setErrMessage("لم يتم العثور على بيانات المستخدم");
       }
@@ -75,6 +79,7 @@ const LogInPage = () => {
         });
       }
       navigate("/ProfilePage");
+
       toast.success("أهلاً بعودتك, هيا لندرس معاً", {
         position: "top-center",
         autoClose: 3000,

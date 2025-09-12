@@ -37,38 +37,68 @@ const MainPage = () => {
   }, []);
 
   return (
-    <Container className="h-screen px-50">
-      <div className="flex flex-col flex-wrap w-125">
-        <span className="text-gray-500 mb-5 text-xl">لنبدأ بكورسك المفضل</span>
-        <p className="font-bold text-2xl my-2">
+    <Container className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-10 px-4 py-10">
+      {/* النصوص وزر التنقل */}
+      <div className="w-full max-w-xl text-center lg:text-start">
+        <span className="text-gray-500 mb-5 text-xl block">
+          لنبدأ بكورسك المفضل
+        </span>
+        <p className="font-bold text-2xl my-2 leading-relaxed">
           الآن تعلم أينما كنت واكتسب المعرفة لاجتياز امتحاناتك
           <span className="text-gray-500 mr-1">بامتياز و تفوق </span>
         </p>
-        <p className="mt-3 text-xl">
-          إنه ليس فقط للمحاضرات, موقعنا يقدم لك فيديوهات و شروحات و اختبارات لأي
+        <p className="mt-3 text-xl leading-relaxed">
+          إنه ليس فقط للمحاضرات، موقعنا يقدم لك فيديوهات و شروحات و اختبارات لأي
           مادة تريد ولجميع السنوات الجامعية
         </p>
 
-        {userData === null ? (
-          <span className="text-gray-400">جاري تحميل...</span>
-        ) : userData.role === "teacher" ? (
-          <button className="btn px-5 py-5 w-50 text-xl my-7 hover:text-2xl transition-all">
-            <Link to="/ProfessorDashboard">لوحة الأستاذ</Link>
-          </button>
-        ) : (
-          <button className="btn px-5 py-5 w-50 text-xl my-7 hover:text-2xl transition-all">
-            <Link to="/CoursesPage">لنتعلم معاً</Link>
-          </button>
-        )}
+        <button className="btn w-40 py-3 text-xl my-7 rounded-lg hover:text-2xl transition-all duration-200">
+          <Link to="/CoursesPage">لنتعلم معاً</Link>
+        </button>
       </div>
-      <div>
+
+      <div className="w-full max-w-md">
         <img
           src={photo}
           alt="Loading"
-          className="border-15 border-blue-800 rounded-full p-3"
+          className="w-full h-auto border-8 border-blue-800 rounded-full p-3 shadow-md"
         />
       </div>
     </Container>
+
+    //origin
+    // <Container className="h-screen px-50">
+    //   <div className="flex flex-col flex-wrap w-125">
+    //     <span className="text-gray-500 mb-5 text-xl">لنبدأ بكورسك المفضل</span>
+    //     <p className="font-bold text-2xl my-2">
+    //       الآن تعلم أينما كنت واكتسب المعرفة لاجتياز امتحاناتك
+    //       <span className="text-gray-500 mr-1">بامتياز و تفوق </span>
+    //     </p>
+    //     <p className="mt-3 text-xl">
+    //       إنه ليس فقط للمحاضرات, موقعنا يقدم لك فيديوهات و شروحات و اختبارات لأي
+    //       مادة تريد ولجميع السنوات الجامعية
+    //     </p>
+
+    //     {userData === null ? (
+    //       <span className="text-gray-400">جاري تحميل...</span>
+    //     ) : userData.role === "teacher" ? (
+    //       <button className="btn px-5 py-5 w-50 text-xl my-7 hover:text-2xl transition-all">
+    //         <Link to="/ProfessorDashboard">لوحة الأستاذ</Link>
+    //       </button>
+    //     ) : (
+    //       <button className="btn px-5 py-5 w-50 text-xl my-7 hover:text-2xl transition-all">
+    //         <Link to="/CoursesPage">لنتعلم معاً</Link>
+    //       </button>
+    //     )}
+    //   </div>
+    //   <div>
+    //     <img
+    //       src={photo}
+    //       alt="Loading"
+    //       className="border-15 border-blue-800 rounded-full p-3"
+    //     />
+    //   </div>
+    // </Container>
   );
 };
 

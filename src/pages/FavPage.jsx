@@ -62,32 +62,34 @@ const FavPage = () => {
             لا توجد مقاطع فيديو مفضلة
           </p>
         ) : (
-          <ul>
-            {favorites.map((fav) => (
-              <li
-                key={fav.id}
-                className="relative flex justify-start items-end w-full h-50 bg-gray-200 p-3 my-3 rounded-xl"
-              >
-                <iframe
-                  src={`https://www.youtube.com/embed/${fav.videoId}`}
-                  frameBorder="0"
-                  allowFullScreen
-                  className="mx-5 w-[300px] h-[180px] rounded-xl"
-                  title={fav.videoId}
-                ></iframe>
-                <p className="mr-5 text-2xl text-wrap w-100">{fav.title}</p>
+          <div className="h-screen overflow-y-auto pl-10">
+            <ul>
+              {favorites.map((fav) => (
+                <li
+                  key={fav.id}
+                  className="relative flex justify-start items-end w-full h-50 bg-gray-200 p-3 my-3 rounded-xl"
+                >
+                  <iframe
+                    src={`https://www.youtube.com/embed/${fav.videoId}`}
+                    frameBorder="0"
+                    allowFullScreen
+                    className="mx-5 w-[300px] h-[180px] rounded-xl"
+                    title={fav.videoId}
+                  ></iframe>
+                  <p className="mr-5 text-2xl text-wrap w-100">{fav.title}</p>
 
-                <button onClick={() => handleRemove(fav.id)}>
-                  <FaHeart className="absolute left-5 top-5 text-red-600 text-xl" />
-                  <span className="sr-only">إزالة من المفضلة</span>
-                </button>
+                  <button onClick={() => handleRemove(fav.id)}>
+                    <FaHeart className="absolute left-5 top-5 text-red-600 text-xl" />
+                    <span className="sr-only">إزالة من المفضلة</span>
+                  </button>
 
-                <span className="absolute left-5 bottom-5 text-xl">
-                  {fav.time}
-                </span>
-              </li>
-            ))}
-          </ul>
+                  <span className="absolute left-5 bottom-5 text-xl">
+                    {fav.time}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
     </Container>

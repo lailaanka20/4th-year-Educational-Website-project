@@ -76,30 +76,32 @@ const ProfessorDashboard = () => {
             ) : exams.length === 0 ? (
               "لا يوجد اختبارات مرفوعة حتى الآن"
             ) : (
-              <ul>
-                {exams.map((exam) => (
-                  <li
-                    key={exam.id}
-                    className="mb-5 text-xl text-main-color hover:underline"
-                  >
-                    <a
-                      href={exam.url}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="hover:text-purple-900 hover:no-underline"
+              <div className="max-h-[300px] overflow-y-auto pl-10">
+                <ul>
+                  {exams.map((exam) => (
+                    <li
+                      key={exam.id}
+                      className="mb-5 text-xl text-main-color hover:underline"
                     >
-                      اضغط هنا
-                      <span className="text-second-color font-bold mx-1">
-                        {exam.title}
-                      </span>
-                      لعرض الاختبار
-                    </a>
-                    <p>
-                      تم الرفع في: {exam.createdAt.toDate().toLocaleString()}
-                    </p>
-                  </li>
-                ))}
-              </ul>
+                      <a
+                        href={exam.url}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="hover:text-purple-900 hover:no-underline"
+                      >
+                        اضغط هنا
+                        <span className="text-second-color font-bold mx-1">
+                          {exam.title}
+                        </span>
+                        لعرض الاختبار
+                      </a>
+                      <p>
+                        تم الرفع في: {exam.createdAt.toDate().toLocaleString()}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
           </div>
         </div>

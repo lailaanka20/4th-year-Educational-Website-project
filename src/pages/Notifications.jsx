@@ -21,6 +21,7 @@ const Notifications = () => {
       const snaphot = await getDocs(q);
       const notes = snaphot.docs.map((doc) => ({
         id: doc.id,
+        message: doc.data().message,
         ...doc.data(),
       }));
       setNotifications(notes);
@@ -40,7 +41,10 @@ const Notifications = () => {
           </p>
         ) : (
           notifications.map((note) => (
-            <li className="relative flex w-full h-20 shadow-lg p-4 my-8">
+            <li
+              key={note.id}
+              className="relative flex w-full h-20 shadow-lg p-4 my-8"
+            >
               <MdNotificationsActive className="text-4xl mx-5 border-2 rounded-full w-12 h-12 p-1" />
               {note.message}
               <span className="absolute my-2 bottom-0 left-5 font-bold">

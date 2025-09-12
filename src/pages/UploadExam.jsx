@@ -33,7 +33,7 @@ const UploadExam = () => {
       });
 
       await addDoc(collection(db, "notifications"), {
-        messsage: `تم رفع اختبار جديد بعنوان ${title}`,
+        message: `تم رفع اختبار جديد بعنوان ${title}`,
         time: Timestamp.now(),
         type: "exam",
         forRole: "student",

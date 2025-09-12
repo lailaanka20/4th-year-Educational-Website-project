@@ -15,11 +15,21 @@ const Navlayout = () => {
     return () => unsubscribe;
   }, []);
   return (
-    <>
+    // <>
+    //   {user ? <NavBarUser /> : <NavBar />}
+    //   <Outlet />
+    //   <Footer />
+    // </>
+
+    <div className="flex flex-col min-h-screen">
       {user ? <NavBarUser /> : <NavBar />}
-      <Outlet />
+
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+
       <Footer />
-    </>
+    </div>
   );
 };
 
