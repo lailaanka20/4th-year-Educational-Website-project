@@ -15,6 +15,7 @@ dist-ssr
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+replacements.txt
 .idea
 .DS_Store
 *.suo
@@ -23,4 +24,3 @@ dist-ssr
 *.sln
 *.sw?
 *.env
-replacements.txt

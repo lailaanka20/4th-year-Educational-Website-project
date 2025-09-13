@@ -54,9 +54,24 @@ const LogInPage = () => {
         setErrMessage("لم يتم العثور على بيانات المستخدم");
       }
     } catch (error) {
-      setErrMessage(
-        "فشل تسجيل الدخول !  تحقق من البريد الإلكتروني و كلمة السر"
-      );
+      // setErrMessage(
+      //   "فشل تسجيل الدخول !  تحقق من البريد الإلكتروني و كلمة السر"
+      // );
+
+      console.error("Login error:", error.code, error.message);
+      switch (error.code) {
+        case "auth/user-not-found":
+          setErrMessage("المستخدم غير موجود");
+          break;
+        case "auth/wrong-password":
+          setErrMessage("كلمة المرور غير صحيحة");
+          break;
+        case "auth/invalid-email":
+          setErrMessage("البريد الإلكتروني غير صالح");
+          break;
+        default:
+          setErrMessage("حدث خطأ أثناء تسجيل الدخول");
+      }
     } finally {
       setLoading(false);
     }
@@ -74,7 +89,7 @@ const LogInPage = () => {
         await setDoc(userDocRef, {
           name: user.displayName || "",
           email: user.email,
-          role: user.role,
+          role: user.role || "student",
           createdAt: new Date(),
         });
       }

@@ -12,11 +12,24 @@ const CourseVideo = ({ playlistId }) => {
   useEffect(() => {
     const fetchVids = async () => {
       setLoading(true);
+
       const apiKey = import.meta.env.VITE_API_KEY;
       const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=20&playlistId=${playlistId}&key=${apiKey}`;
 
       const res = await fetch(url);
       const data = await res.json();
+
+      if (!data.items) {
+        <p className="text-2xl mt-12 font-semibold text-amber-600">
+          تأكد من الاتصال بالانترنت !
+        </p>;
+        setLoading(false);
+        return;
+      } else {
+        <p className="text-2xl mt-12 font-semibold text-amber-600">
+          تعذر تحميل الفيديوهات
+        </p>;
+      }
 
       const vidItems = data.items.map((item, index) => ({
         title: item.snippet.title,
